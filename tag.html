@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bubu a Bubududu TAG MODE — 2-player pakdam-pakai on one keyboard, or solo vs CPU!">
+    <meta name="theme-color" content="#155c3d">
+    <title>Bubu a Bubududu — TAG MODE</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="tag.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <!-- Menu / mode select -->
+        <div class="screen active" id="tagMenuScreen">
+            <div class="logo">
+                <h1>TAG MODE</h1>
+                <p class="subtitle">Bubu a Bubududu · pakdam-pakai</p>
+            </div>
+            <div class="characters-preview">
+                <img src="assets/images/bubu.png" alt="Bubu" class="character bubu-preview">
+                <span class="couple-heart" aria-hidden="true">💞</span>
+                <img src="assets/images/dudu.png" alt="Dudu" class="character dudu-preview">
+            </div>
+            <div class="tag-rules">
+                <p><span class="key">ARROWS</span> move Bubu &nbsp;·&nbsp; <span class="key">W A S D</span> move Dudu</p>
+                <p>The one with <span class="it-chip">IT!</span> chases. Touch = tag = swap + 150 pts.</p>
+                <p>Runner earns 10 pts/sec. Grab bamboo ☘, coffee ☕ (speed) & honey 🍯 (slow foe).</p>
+                <p>60 seconds — highest score wins the couple's crown! 👑</p>
+            </div>
+            <button class="game-btn" id="btn2p">2 PLAYERS · 1 KEYBOARD</button>
+            <button class="game-btn secondary" id="btnCpu">SOLO · VS CPU</button>
+            <button class="game-btn secondary" id="backRunnerBtn">← RUNNER GAME</button>
+            <p class="phone-note">Phone par? Solo vs CPU khelo — drag finger to move Bubu!</p>
+            <div class="support-corner">
+                <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee">
+                    <span class="coffee-icon">☕</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Arena -->
+        <div class="game-container" id="tagContainer">
+            <canvas id="tagCanvas" aria-label="Tag mode arena"></canvas>
+            <div class="game-ui tag-hud">
+                <div class="tag-panel bubu-panel">
+                    <span class="tag-name">BUBU</span>
+                    <span class="value" id="tagScoreB">0</span>
+                    <span class="it-badge" id="itB">IT!</span>
+                </div>
+                <div class="tag-timer" id="tagTimer">60</div>
+                <div class="tag-panel dudu-panel">
+                    <span class="it-badge" id="itD">IT!</span>
+                    <span class="value" id="tagScoreD">0</span>
+                    <span class="tag-name">DUDU</span>
+                </div>
+            </div>
+            <button class="pause-btn" id="tagPauseBtn" aria-label="Pause game">⏸</button>
+        </div>
+
+        <!-- Pause -->
+        <div class="screen" id="tagPauseScreen">
+            <h2>PAUSED</h2>
+            <button class="game-btn" id="tagResumeBtn">RESUME</button>
+            <button class="game-btn secondary" id="tagQuitBtn">QUIT TO MENU</button>
+            <div class="support-link">
+                <p>Like the game? <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a></p>
+            </div>
+        </div>
+
+        <!-- Round over -->
+        <div class="screen" id="tagOverScreen">
+            <h2 id="winnerText">BUBU WINS!</h2>
+            <img id="winnerImg" src="assets/images/bubu.png" alt="Winner" class="winner-img">
+            <div class="final-score">
+                <p>BUBU: <span id="finalB">0</span></p>
+                <p>DUDU: <span id="finalD">0</span></p>
+            </div>
+            <p class="sweet-line" id="overQuip">What a chase — true love runs fast! 💞</p>
+            <button class="game-btn" id="tagRematchBtn">REMATCH</button>
+            <button class="game-btn secondary" id="tagMenuBtn">MENU</button>
+            <div class="support-link">
+                <p>Cheer the couple — <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">buy us a coffee ☕</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <h2>Loading...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/engine.js"></script>
+    <script src="js/sprites.js"></script>
+    <script src="js/tag.js"></script>
+</body>
+</html>
