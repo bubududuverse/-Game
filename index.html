@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Bubu a Bubududu — help Bubu sprint through the bamboo grove, collect bamboo and dodge Dudu!">
+    <meta name="theme-color" content="#155c3d">
+    <title>Bubu a Bubududu Adventure</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <!-- Start Screen -->
+        <div class="screen start-screen" id="startScreen">
+            <div class="logo">
+                <h1>BUBU A BUBUDUDU</h1>
+                <p class="subtitle">An Adventure Game</p>
+            </div>
+            <div class="characters-preview">
+                <img src="assets/images/bubu.png" alt="Bubu" class="character bubu-preview">
+                <span class="couple-heart" aria-hidden="true">💞</span>
+                <img src="assets/images/dudu.png" alt="Dudu" class="character dudu-preview">
+            </div>
+            <p class="story-line">
+                A bamboo-grove love story: Bubu races to gather dinner bamboo
+                while Dudu chases him in the world's sweetest game of tag.
+                One hug = one life lost!
+            </p>
+            <button class="game-btn" id="startBtn">START GAME</button>
+            <button class="game-btn secondary" id="howToPlayBtn">HOW TO PLAY</button>
+            <button class="game-btn secondary" id="tagModeBtn">TAG MODE · 2 PLAYER 💞</button>
+            <div class="support-corner">
+                <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer" aria-label="Buy us a coffee">
+                    <span class="coffee-icon">☕</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- How to Play Screen -->
+        <div class="screen how-to-screen" id="howToScreen">
+            <h2>HOW TO PLAY</h2>
+            <div class="instructions">
+                <div class="control">
+                    <span class="key">← →</span>
+                    <span>Move</span>
+                </div>
+                <div class="control">
+                    <span class="key">↑ / SPACE</span>
+                    <span>Jump</span>
+                </div>
+                <div class="control">
+                    <span class="key">↓</span>
+                    <span>Crouch</span>
+                </div>
+            </div>
+            <p class="game-objective">
+                Help Bubu collect <span class="highlight">bamboo</span> and outrun
+                <span class="highlight">Dudu</span>'s game of tag!
+                Each bamboo gives you 100 points. Get hugged = lose a life!
+            </p>
+            <div class="support-link">
+                <p>Made with love by a couple — <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">buy us a coffee ☕</a></p>
+            </div>
+            <button class="game-btn" id="backToStartBtn">BACK</button>
+        </div>
+
+        <!-- Game Canvas -->
+        <div class="game-container" id="gameContainer">
+            <canvas id="gameCanvas" aria-label="Bubu a Bubududu game area"></canvas>
+            <div class="game-ui">
+                <div class="score-display">
+                    <span class="label">SCORE</span>
+                    <span class="value" id="score">0</span>
+                </div>
+                <div class="lives-display">
+                    <span class="label">LIVES</span>
+                    <span class="value" id="lives">3</span>
+                    <span class="heart-icon">❤️</span>
+                </div>
+                <div class="level-display">
+                    <span class="label">LEVEL</span>
+                    <span class="value" id="level">1</span>
+                </div>
+            </div>
+            <div class="mobile-controls" id="mobileControls">
+                <div class="dir-pad">
+                    <button class="touch-btn" id="leftBtn" aria-label="Move left">←</button>
+                    <button class="touch-btn" id="rightBtn" aria-label="Move right">→</button>
+                </div>
+                <button class="touch-btn jump-btn" id="jumpBtn" aria-label="Jump">↑</button>
+            </div>
+            <button class="pause-btn" id="pauseBtn" aria-label="Pause game">⏸</button>
+        </div>
+
+        <!-- Pause Screen -->
+        <div class="screen pause-screen" id="pauseScreen">
+            <h2>PAUSED</h2>
+            <button class="game-btn" id="resumeBtn">RESUME</button>
+            <button class="game-btn secondary" id="quitBtn">QUIT TO MENU</button>
+            <div class="support-link">
+                <p>Like the game? <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a></p>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div class="screen game-over-screen" id="gameOverScreen">
+            <h2>GAME OVER</h2>
+            <div class="final-score">
+                <p>SCORE: <span id="finalScore">0</span></p>
+                <p>HIGH SCORE: <span id="highScore">0</span></p>
+            </div>
+            <p class="sweet-line">Dudu's hugs won this time… the couple runs again tomorrow! 💞</p>
+            <button class="game-btn" id="playAgainBtn">PLAY AGAIN</button>
+            <button class="game-btn secondary" id="menuBtn">MAIN MENU</button>
+            <div class="support-link">
+                <p>Like the game? <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">Buy us a coffee ☕</a></p>
+            </div>
+        </div>
+
+        <!-- Level Complete Screen -->
+        <div class="screen level-screen" id="levelCompleteScreen">
+            <h2>LEVEL COMPLETE!</h2>
+            <p>Score: <span id="levelScore">0</span></p>
+            <div class="support-link">
+                <p>Cheer the couple on — <a href="https://buymeacoffee.com/tender.duo" target="_blank" rel="noopener noreferrer">buy us a coffee ☕</a></p>
+            </div>
+            <button class="game-btn" id="nextLevelBtn">NEXT LEVEL</button>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <h2>Loading...</h2>
+            <div class="loading-bar">
+                <div class="loading-progress" id="loadingProgress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/game.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/sprites.js"></script>
+</body>
+</html>
